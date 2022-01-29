@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b54d15e0-4ff6-4508-9241-615d56a65dfe": {
+      "ProjectGuid": "b54d15e0-4ff6-4508-9241-615d56a65dfe",
+      "DisplayName": "HouseRent.UI",
+      "ColorIndex": 0
+    },
+    "4fad7746-e1d5-434f-8d44-361d896fcf78": {
+      "ProjectGuid": "4fad7746-e1d5-434f-8d44-361d896fcf78",
+      "DisplayName": "HouseRent.Domain",
+      "ColorIndex": 1
+    },
+    "dedf1a71-e614-420f-bce1-fe6bbf261420": {
+      "ProjectGuid": "dedf1a71-e614-420f-bce1-fe6bbf261420",
+      "DisplayName": "HouseRent.Database",
+      "ColorIndex": 2
+    },
+    "8b38062b-68ad-49c4-9ad9-effd3daa2ac3": {
+      "ProjectGuid": "8b38062b-68ad-49c4-9ad9-effd3daa2ac3",
+      "DisplayName": "HouseRent.Application",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

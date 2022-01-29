@@ -1,0 +1,150 @@
+﻿@page
+@model HouseRent.UI.Pages.Users.IndexModel
+@{
+
+}
+
+
+<div id="app">
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title">Your Available Bills</h4>
+                            <p class="card-category">lets look at all the bills.</p>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <input type="hidden" asp-for="Sessiondata.Id" />
+                            <input type="hidden"  asp-for="PublicKey" />
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <th>Room Description</th>
+                                <th>Bill For Month</th>
+                                <th>Total Amount</th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in details">
+                                        <td>{{item.roomDesc}} - {{item.sublocationName}} - {{item.locationName}}</td>
+                                        <td>
+                                            <ul v-for="data in item.bills">
+                                                <li>{{data.startingDate}}</li>
+                                                <hr />
+                                            </ul>
+
+                                        </td>
+                                        <td>
+                                            <ul v-for="data in item.bills">
+                                                <li>
+                                                    {{data.amount}} <span class="ml-2">
+                                                        <button class="btn btn-secondary" @@click="ViewBill(item.id,data.startingDate)">View and Pay Bill</button>
+                                                       @* <button class="btn btn-primary" @@click="ViewBill(item.id,data.startingDate)">Pay Bill</button>*@
+                                                        <hr />
+                                                    </span>
+                                                </li>
+                                            </ul>
+
+                                        </td>
+                                        <td>
+                                            <ul v-for="data in item.bills">
+                                            </ul>
+
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" v-if="billAvailable">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title text-center">Bill Details</h4>
+                            <p class="card-category  text-center">
+                                Bill for month of : <u>{{monthArr[originalData.paymentForMonth-1]}}</u>
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="description">
+                                <ul>
+                                    <li class="pb-2 ">Tenant Name: {{originalData.customerName}} </li>
+                                    <li class="pb-2 ">RoomId: {{originalData.roomId}} </li>
+                                    <li class="pb-2 ">Rent:{{originalData.rent}} </li>
+                                    <li class="pb-2">Wastage Cost: {{originalData.wastageCost}}</li>
+                                    <li class="pb-2">Water Cost:{{originalData.waterCost}}</li>
+                                    <li class="pb-2">Electricity Cost:{{totalEcost}}</li>
+                                    <li class="pb-2">Miscellenous Cost:{{originalData.miscellenousCost}}</li>
+                                    <li class="pb-2">Total Amount:{{originalData.amount}}</li>
+
+
+
+                                </ul>
+                            </p>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" @@click="PayFor">Pay</button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="isPay">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header ">
+                            <h4 class="card-title text-center">Card Details</h4>
+                            <p class="card-category  text-center">
+                              Enter your card details for processing
+                            </p>
+                        </div>
+                        <div class="card-body">
+
+
+
+
+
+
+                            <!-- Display a payment form -->
+                            <form id="payment-form">
+                                <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                                <button id="submit">
+                                    <div class="spinner hidden" id="spinner"></div>
+                                    <span id="button-text">Pay now</span>
+                                </button>
+                                <p id="card-error" role="alert"></p>
+                                <p class="result-message hidden">
+                                    Payment succeeded, see the result in your
+                                    <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                                </p>
+                            </form>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts{
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="~/js/VueUser/index.js"></script>
+    
+}

@@ -1,0 +1,166 @@
+﻿@page
+@model HouseRent.UI.Pages.Admin.RoomManagementModel
+@{
+}
+
+
+<div id="app">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Rooms</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Room No</label>
+                                        <input type="text" class="form-control" placeholder="RNo" v-model="roomInfo.roomDesc">
+                                    </div>
+                                </div>
+                                @*<div class="col-md-8 pl-2">
+                                    <div class="form-group">
+                                        <label class="pl-1">Rent</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.rent" placeholder="Rent">
+                                    </div>
+                                </div>*@
+
+                            </div>
+                            @*<div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Previous Electricity Unit</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.previousEReading" placeholder="Pervious Unit">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Present Electricity Unit</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.presentEReading" placeholder="Present Unit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Water Charges</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.waterCost" placeholder="Water Charge">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Wastage Charge</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.wastageCost" placeholder="Wastage Charge">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Miscellenous Charges</label>
+                                        <input type="number" class="form-control" v-model.number="roomInfo.miscellenousCost" placeholder="Miscellenous Charges">
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Tenant Name</label>
+                                        <select id="inputState" class="form-control" v-model="roomInfo.tenantId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="items in customers" v-bind:value="items.id">{{items.firstName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Location</label>
+                                        <select id="inputState" class="form-control" @@change="selectedLocation" v-model="locationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in sublocations" v-bind:value="item.locationId">{{item.locationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Sub-Location</label>
+                                        <select id="inputState" class="form-control" v-model="roomInfo.subLocationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in selProd" v-bind:value="item.id">{{item.sublocationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Room Started</label>
+                                        <input type="text" class="form-control" id="datepicker" placeholder="Select Date" >
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" v-if="!editing" @@click="AddRoom(roomInfo)">Add Room</button>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" v-else @@click="updateRooms(roomInfo)">UpdateRoom</button>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-md-12">
+                    <div class="card">
+
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                 <th>S.No</th>
+                                <th>Customer Name</th>
+                                <th>Room Number</th>
+                                <th>Sublocation</th>
+                                <th>Location</th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in rooms">
+                                        <td>{{index+1}}</td>
+                                        <td>{{item.customerName}}</td>
+                                        <td>
+                                            <ul v-for="data in item.roomDetail">
+                                                <li @@click="getRoom(data.roomId)">{{data.roomDesc}} <span @@click="DeleteRoom(data.roomId)">X</span></li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="data in item.roomDetail">
+                                                <li>{{data.sublocation}}        </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul v-for="data in item.roomDetail">
+                                                <li>{{data.location}}        </li>
+                                            </ul>
+                                        </td>
+                                        
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    
+    <script src="~/js/VueAdmin/room.js"></script>
+
+
+}

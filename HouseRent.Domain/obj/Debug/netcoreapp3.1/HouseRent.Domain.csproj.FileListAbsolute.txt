@@ -1,0 +1,10 @@
+E:\dot net\HouseRent\HouseRent.Domain\bin\Debug\netcoreapp3.1\HouseRent.Domain.deps.json
+E:\dot net\HouseRent\HouseRent.Domain\bin\Debug\netcoreapp3.1\HouseRent.Domain.dll
+E:\dot net\HouseRent\HouseRent.Domain\bin\Debug\netcoreapp3.1\HouseRent.Domain.pdb
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.AssemblyInfoInputs.cache
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.AssemblyInfo.cs
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.csproj.CoreCompileInputs.cache
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.dll
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.pdb
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.csproj.AssemblyReference.cache
+E:\dot net\HouseRent\HouseRent.Domain\obj\Debug\netcoreapp3.1\HouseRent.Domain.GeneratedMSBuildEditorConfig.editorconfig

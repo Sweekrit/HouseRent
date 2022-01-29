@@ -1,0 +1,241 @@
+﻿@page
+@model HouseRent.UI.Pages.Admin.BillManagementModel
+@{
+}
+
+<div id="app">
+
+<div class="content">
+
+<div class="container-fluid">
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-create-tab" data-toggle="tab" href="#nav-create" role="tab" aria-controls="nav-create" aria-selected="true">Create Bill</a>
+                        <a class="nav-item nav-link" id="nav-show-tab" data-toggle="tab" href="#nav-show" role="tab" aria-controls="nav-show" aria-selected="false">Show Bill</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Location</label>
+                                        <select id="inputState" class="form-control" @@change="selectedLocation" v-model="locationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in sublocations" v-bind:value="item.locationId">{{item.locationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label for="inputState">SubLocation</label>
+                                        <select id="inputState" class="form-control" @@change="selectedSubLocation" v-model="sublocationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in selLocation" v-bind:value="item.id">{{item.sublocationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Room Description</label>
+                                        <select id="inputState" class="form-control" v-model="bill.roomId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in selSublocation" v-bind:value="item.roomId">{{item.roomDesc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Select Month</label>
+                                        <select id="inputState" class="form-control" v-model="bill.paymentForMonth">
+                                            <option value="">Choose...</option>
+                                            <option v-for="(item,index) in monthArr" v-bind:value="index">{{item}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label class="pl-1">Rent</label>
+                                        <input type="number" class="form-control" v-model.number="bill.rent" placeholder="Rent">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Wastage Charge</label>
+                                        <input type="number" class="form-control" v-model.number="bill.wastageCost" placeholder="Wastage Charge">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Present Electricity Unit</label>
+                                        <input type="number" class="form-control" v-model.number="bill.presentEReading" placeholder="Present Unit">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Previous Electricity Unit</label>
+                                        <input type="number" class="form-control" v-model.number="bill.previousEReading" placeholder="Previous Unit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Water Charges</label>
+                                        <input type="number" class="form-control" v-model.number="bill.waterCost" placeholder="Water Charge">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Miscellenous Charges</label>
+                                        <input type="text" class="form-control" v-model.number="bill.miscellenousCost" placeholder="Miscellenous Charges">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" v-if="!billAvailable" @@click="AddBill">Create Bill</button>
+                             <button type="submit" class="btn btn-info btn-fill pull-right" v-else @@click="UpdateBill">Update Bill</button>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-show" role="tabpanel" aria-labelledby="nav-show-tab">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Location</label>
+                                        <select id="inputState" class="form-control" @@change="selectedLocation" v-model="locationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in sublocations" v-bind:value="item.locationId">{{item.locationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label for="inputState">SubLocation</label>
+                                        <select id="inputState" class="form-control" @@change="selectedSubLocation" v-model="sublocationId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in selLocation" v-bind:value="item.id">{{item.sublocationName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Room Description</label>
+                                        <select id="inputState" class="form-control" v-model="bill.roomId">
+                                            <option value="">Choose...</option>
+                                            <option v-for="item in selSublocation" v-bind:value="item.roomId">{{item.roomDesc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label for="inputState">Select Month</label>
+                                        <select id="inputState" class="form-control" v-model="bill.paymentForMonth">
+                                            <option value="">Choose...</option>
+                                            <option v-for="(item,index) in monthArr" v-bind:value="index">{{item}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <button type="submit" class="btn btn-info btn-fill pull-right" @@click="ViewBill">View Bill</button>
+                            <div class="clearfix"></div>
+
+                           
+
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+               
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="billAvailable">
+    <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+            <div class="card-header ">
+                <h4 class="card-title text-center">Bill Details</h4>
+                <p class="card-category  text-center">Bill for month of : <u>{{monthArr[bill.paymentForMonth]}}</u>
+                </p>
+            </div>
+            <div class="card-body">
+                <p class="description">
+                    <ul>
+                        <li class="pb-2 ">Tenant Name: {{customerName}} </li>
+                        <li class="pb-2 ">RoomId: {{bill.roomId}} </li>
+                        <li class="pb-2 ">Rent:{{bill.rent}} </li>
+                        <li class="pb-2">Wastage Cost: {{bill.wastageCost}}</li>
+                        <li class="pb-2">Water Cost:{{bill.waterCost}}</li>
+                        <li class="pb-2">Electricity Cost:{{totalEcost}}</li>
+                        <li class="pb-2">Miscellenous Cost:{{bill.miscellenousCost}}</li>
+                        <li class="pb-2">Total Amount:{{bill.amount}}</li>
+
+
+
+                    </ul>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+</div>
+</div>   
+
+
+
+
+
+
+
+
+
+
+@section Scripts{
+    <script src="~/js/VueAdmin/bills.js"></script>
+
+}

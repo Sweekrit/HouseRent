@@ -1,0 +1,13 @@
+E:\dot net\HouseRent\HouseRent.Database\bin\Debug\netcoreapp3.1\HouseRent.Database.deps.json
+E:\dot net\HouseRent\HouseRent.Database\bin\Debug\netcoreapp3.1\HouseRent.Database.dll
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.AssemblyInfoInputs.cache
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.AssemblyInfo.cs
+E:\dot net\HouseRent\HouseRent.Database\bin\Debug\netcoreapp3.1\HouseRent.Database.pdb
+E:\dot net\HouseRent\HouseRent.Database\bin\Debug\netcoreapp3.1\HouseRent.Domain.dll
+E:\dot net\HouseRent\HouseRent.Database\bin\Debug\netcoreapp3.1\HouseRent.Domain.pdb
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.csproj.CopyComplete
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.dll
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.pdb
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.csproj.CoreCompileInputs.cache
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.csproj.AssemblyReference.cache
+E:\dot net\HouseRent\HouseRent.Database\obj\Debug\netcoreapp3.1\HouseRent.Database.GeneratedMSBuildEditorConfig.editorconfig
